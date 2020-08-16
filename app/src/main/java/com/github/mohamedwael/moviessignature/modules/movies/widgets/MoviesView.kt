@@ -17,6 +17,6 @@ class MoviesView @JvmOverloads constructor(
     }
 
     fun setMovie(movieUIModel: MovieUIModel) {
-        binding.viewModel.movieUIModel.set(movieUIModel)
+        binding.viewModel?.movieUIModel?.set(movieUIModel)
     }
 }

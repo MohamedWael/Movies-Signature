@@ -15,4 +15,6 @@
     <string name="server_error">Internal server error</string>
     <string name="search_by_movie">Search by movie</string>
     <string name="rate">"Rate: %1$s"</string>
+    <string name="genres">Genres</string>
+    <string name="cast">Cast</string>
 </resources>
