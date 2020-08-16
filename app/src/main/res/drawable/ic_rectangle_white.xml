@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?><!-- drawable/rectangle_1.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <solid android:color="#ffffff" />
+
+</shape>
