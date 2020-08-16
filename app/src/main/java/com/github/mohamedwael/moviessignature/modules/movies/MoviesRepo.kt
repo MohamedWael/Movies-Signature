@@ -9,9 +9,18 @@ import com.github.mohamedwael.moviessignature.modules.movies.dto.MoviesResponse
 
 class MoviesRepo(private val parser: RawJsonFileParser<MoviesResponse>) {
 
+    private fun loadMoviesList(): List<MoviesItem>? =
+        parser.invoke(R.raw.movies, MoviesResponse::class.java)?.movies
+
     fun getMovies(): LiveData<List<MoviesItem>> {
         val movies = MutableLiveData<List<MoviesItem>>()
-        movies.value = parser.invoke(R.raw.movies, MoviesResponse::class.java)?.movies
+        movies.value = loadMoviesList()
         return movies
+    }
+
+    fun getMovieById(id: Int): LiveData<MoviesItem> {
+        val movie = MutableLiveData<MoviesItem>()
+        movie.value = loadMoviesList()?.getOrNull(id)
+        return movie
     }
 }

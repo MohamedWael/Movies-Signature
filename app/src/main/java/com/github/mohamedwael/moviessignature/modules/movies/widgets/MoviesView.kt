@@ -12,9 +12,11 @@ class MoviesView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    private val binding = ViewMovieBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding = ViewMovieBinding.inflate(LayoutInflater.from(context), this, true).apply {
+        viewModel = MoviesViewModel()
+    }
 
     fun setMovie(movieUIModel: MovieUIModel) {
-        binding.movie = movieUIModel
+        binding.viewModel.movieUIModel.set(movieUIModel)
     }
 }
