@@ -20,5 +20,14 @@
         android:id="@+id/moviesFragment"
         android:name="com.github.mohamedwael.moviessignature.modules.movies.MoviesFragment"
         android:label="MoviesFragment"
-        tools:layout="@layout/movies_fragment" />
+        tools:layout="@layout/movies_fragment">
+        <action
+            android:id="@+id/action_moviesFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.github.mohamedwael.moviessignature.modules.moviedetails.MovieDetailsFragment"
+        android:label="MovieDetailsFragment"
+        tools:layout="@layout/movie_details_fragment" />
 </navigation>
