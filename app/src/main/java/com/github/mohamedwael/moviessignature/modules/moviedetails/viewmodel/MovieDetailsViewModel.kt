@@ -13,7 +13,7 @@ class MovieDetailsViewModel(repo: MoviesRepo) : ViewModel() {
         addSource(movieId) { index ->
             val item = repo.getMovieById(index).value
             item?.also {
-                value = MovieDetails(item.toUIModel(index), item.cast, item.cast)
+                value = MovieDetails(item.toUIModel(index), item.cast)
             }
         }
     }

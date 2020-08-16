@@ -22,61 +22,47 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/card_margin"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <com.github.mohamedwael.moviessignature.modules.movies.widgets.MoviesView
-                    android:id="@+id/movieView"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:bindMovie="@{viewModel.movie.movieUIModel}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_margin="@dimen/card_margin"
+                    android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/llGenres"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="vertical"
-                    app:bindList="@{viewModel.movie.genres}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/movieView">
-
-                    <TextView
-                        android:id="@+id/tvGenres"
-                        style="@style/MainTitle"
+                    <com.github.mohamedwael.moviessignature.modules.movies.widgets.MoviesView
+                        android:id="@+id/movieView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/title_bottom_margin"
-                        android:text="@string/genres" />
-                </LinearLayout>
+                        app:bindMovie="@{viewModel.movie.movieUIModel}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:id="@+id/llCast"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="vertical"
-                    app:bindList="@{viewModel.movie.cast}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/llGenres">
 
-                    <TextView
-                        android:id="@+id/tvCast"
-                        style="@style/MainTitle"
+                    <LinearLayout
+                        android:id="@+id/llCast"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/title_bottom_margin"
-                        android:text="@string/cast" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical"
+                        app:bindList="@{viewModel.movie.cast}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/movieView">
+
+                        <TextView
+                            android:id="@+id/tvCast"
+                            style="@style/MainTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/title_bottom_margin"
+                            android:text="@string/cast" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
         </androidx.cardview.widget.CardView>
 
     </FrameLayout>
