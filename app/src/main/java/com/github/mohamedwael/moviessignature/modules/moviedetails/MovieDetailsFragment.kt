@@ -41,10 +41,6 @@ class MovieDetailsFragment : Fragment() {
         val binding = MovieDetailsFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.rvFirstPosterList.layoutManager = LinearLayoutManager(context)
-        binding.rvFirstPosterList.adapter = ImagePosterAdapter()
-        binding.rvSecondPoster.layoutManager = LinearLayoutManager(context)
-        binding.rvSecondPoster.adapter = ImagePosterAdapter()
         return binding.root
     }
 
