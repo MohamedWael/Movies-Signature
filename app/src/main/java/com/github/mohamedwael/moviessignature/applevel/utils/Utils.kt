@@ -3,6 +3,7 @@ package com.github.mohamedwael.moviessignature.applevel.utils
 import android.app.Activity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.github.mohamedwael.moviessignature.modules.moviedetails.repo.dto.PhotoItem
 import com.github.mohamedwael.moviessignature.modules.movies.dto.MovieUIModel
 import com.github.mohamedwael.moviessignature.modules.movies.dto.MoviesItem
 
@@ -28,3 +29,7 @@ fun MoviesItem.toUIModel(index: Int) = MovieUIModel(
                 .replace("]", ""),
     year
 )
+
+fun createImageURL(photoItem: PhotoItem) =
+    "http://farm${photoItem.farm}.static.flickr.com/${photoItem.server}/${photoItem.id}_${photoItem.secret}.jpg"
+

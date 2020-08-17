@@ -17,4 +17,5 @@
     <string name="rate">"Rate: %1$s"</string>
     <string name="genres">Genres</string>
     <string name="cast">Cast</string>
+    <string name="loading">Loading…</string>
 </resources>
