@@ -32,6 +32,14 @@ android {
     buildFeatures {
         dataBinding = true
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+
+        }
+    }
 }
 
 dependencies {
@@ -60,4 +68,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     testImplementation "org.mockito:mockito-inline:3.3.3"
     testImplementation "org.mockito:mockito-core:3.3.3"
+    testImplementation "androidx.test:core:1.2.0"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
 }
