@@ -1,15 +1,30 @@
 package com.github.mohamedwael.moviessignature.modules.movies.viewmodel
 
-import android.text.TextUtils
-import android.widget.Filter
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.*
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
 import com.blogspot.mowael.utilslibrary.utils.SingleLiveDataEvent
+import com.github.mohamedwael.moviessignature.applevel.utils.toUIModel
 import com.github.mohamedwael.moviessignature.modules.movies.MoviesRepo
 import com.github.mohamedwael.moviessignature.modules.movies.dto.MovieUIModel
 import com.github.mohamedwael.moviessignature.modules.movies.dto.MoviesItem
+import kotlin.collections.List
+import kotlin.collections.filter
+import kotlin.collections.forEach
+import kotlin.collections.listOf
+import kotlin.collections.map
+import kotlin.collections.mapIndexed
+import kotlin.collections.mutableListOf
+import kotlin.collections.mutableMapOf
+import kotlin.collections.mutableSetOf
+import kotlin.collections.set
+import kotlin.collections.sortBy
+import kotlin.collections.sortedByDescending
+import kotlin.collections.toMutableList
 
-private const val LIMIT_PER_SEARCH_FOR_CATEGORY = 4
+private const val LIMIT_PER_SEARCH_FOR_CATEGORY = 5
 
 class MoviesViewModel(moviesRepo: MoviesRepo) : ViewModel() {
 
@@ -36,11 +51,9 @@ class MoviesViewModel(moviesRepo: MoviesRepo) : ViewModel() {
     }
 
     fun search(query: String?) {
-        if (!TextUtils.isEmpty(query)) {
+        if (!query.isNullOrEmpty()) {
             searchableMovies.value = reduceToTopRated5(movieItems.value?.filter { movie ->
-                query?.let {
-                    movie.title?.contains(it)
-                } ?: false
+                movie.title?.contains(query) ?: false
             } ?: listOf())
 
         } else {
@@ -52,17 +65,7 @@ class MoviesViewModel(moviesRepo: MoviesRepo) : ViewModel() {
         val years = mutableSetOf<MovieUIModel>()
         return movieList.mapIndexed { index, movieItem ->
             years.add(MovieUIModel(null, null, null, movieItem.year))
-            MovieUIModel(
-                index,
-                movieItem.title?.trim(),
-                movieItem.rating?.toString() + " . " +
-                        movieItem.genres
-                            .toString()
-                            .replace(",", "/")
-                            .replace("[", "")
-                            .replace("]", ""),
-                movieItem.year
-            )
+            movieItem.toUIModel(index)
         }.toMutableList().also {
             it.addAll(0, years)
         }.apply {
