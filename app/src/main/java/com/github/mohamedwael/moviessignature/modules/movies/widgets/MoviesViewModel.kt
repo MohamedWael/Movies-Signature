@@ -13,11 +13,16 @@ class MoviesViewModel {
     val movieUIModel = ObservableField<MovieUIModel>()
 
     fun onMovieClick(view: View) {
-        movieUIModel.get()?.id?.also { id ->
-            Navigation.findNavController(view)
-                .navigate(R.id.action_moviesFragment_to_movieDetailsFragment, Bundle().apply {
-                    putInt(MOVIE_ID_KEY, id)
-                })
+        try {
+            movieUIModel.get()?.id?.also { id ->
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_moviesFragment_to_movieDetailsFragment, Bundle().apply {
+                        putInt(MOVIE_ID_KEY, id)
+                    })
+            }
+        } catch (e: IllegalArgumentException) {
+            // this exception is thrown when user click on the item from inside the details fragment
+            // no need to handle it as it's only navigate to on direction
         }
     }
 }
