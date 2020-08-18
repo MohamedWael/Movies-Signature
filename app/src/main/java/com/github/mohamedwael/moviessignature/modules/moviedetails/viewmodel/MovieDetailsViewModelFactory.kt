@@ -25,7 +25,7 @@ object MovieDetailsViewModelFactory : ViewModelProvider.Factory {
                 ImagesRepo::class.java
             ).newInstance(repo, imagesRepo)
         } else {
-            throw IllegalStateException("ViewModel must be MoviesViewModel")
+            throw IllegalStateException("ViewModel must be MovieDetailsViewModel")
         }
     }
 }

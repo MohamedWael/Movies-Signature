@@ -1,8 +1,8 @@
 package com.github.mohamedwael.moviessignature.modules.moviedetails.viewmodel
 
-import android.util.Log
-import android.view.View
-import androidx.lifecycle.*
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.blogspot.mowael.retrofitcore.services.ErrorHandler
 import com.blogspot.mowael.utilslibrary.utils.SingleLiveDataEvent
 import com.github.mohamedwael.moviessignature.applevel.utils.toUIModel
@@ -12,7 +12,7 @@ import com.github.mohamedwael.moviessignature.modules.moviedetails.repo.dto.Phot
 import com.github.mohamedwael.moviessignature.modules.movies.MoviesRepo
 
 class MovieDetailsViewModel(repo: MoviesRepo, imagesRepo: ImagesRepo) : ViewModel() {
-    val movieId = MutableLiveData<Int>()
+    val movieId = MutableLiveData<String>()
     val photos = MutableLiveData<List<PhotoItem>>()
     val secondPhotoList = MutableLiveData<List<PhotoItem>>()
     val errorHandler = MutableLiveData<SingleLiveDataEvent<ErrorHandler>>()
@@ -20,21 +20,20 @@ class MovieDetailsViewModel(repo: MoviesRepo, imagesRepo: ImagesRepo) : ViewMode
     val movie = MediatorLiveData<MovieDetails>().apply {
         addSource(photos) {
             progressVisibility.value = false
-            Log.d("MovieDetailsViewModel", "progress false")
         }
 
-        addSource(movieId) { index ->
-            val item = repo.getMovieById(index).value
-            item?.also {
-                imagesRepo.getImageList(it.title, {
-                    photos.value = it.subList(0, it.size/2)
-                    secondPhotoList.value = it.subList(it.size/2+1, it.size)
+        addSource(movieId) { id ->
+            val item = repo.getMovieById(id).value
+            item?.also { movieItem ->
+                imagesRepo.getImageList(movieItem.title, {
+                    photos.value = it.subList(0, it.size / 2)
+                    secondPhotoList.value = it.subList(it.size / 2 + 1, it.size)
 
                 }, {
                     progressVisibility.value = false
                     errorHandler.value = SingleLiveDataEvent(it)
                 })
-                value = MovieDetails(item.toUIModel(index), item.cast)
+                value = MovieDetails(item.toUIModel(), item.cast)
             }
         }
     }

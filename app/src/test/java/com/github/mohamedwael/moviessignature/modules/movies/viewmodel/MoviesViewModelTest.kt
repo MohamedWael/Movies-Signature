@@ -52,8 +52,8 @@ class MoviesViewModelTest {
         val movieUIModelList = viewModel.createMovieUIModel(getMoviesItems())
         assertTrue(movieUIModelList.size == 12)
         assertTrue(movieUIModelList.first().title == null && movieUIModelList.first().year == 2009)
-        assertTrue(movieUIModelList[1].title == getMoviesItems().first().title && movieUIModelList[1].id == 0)
-        assertTrue(movieUIModelList.last().title == getMoviesItems().last().title && movieUIModelList.last().id == 5)
+        assertTrue(movieUIModelList[1].title == getMoviesItems().first().title)
+        assertTrue(movieUIModelList.last().title == getMoviesItems().last().title)
     }
 
     @Test

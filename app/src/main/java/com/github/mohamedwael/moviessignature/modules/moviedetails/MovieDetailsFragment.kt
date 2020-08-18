@@ -37,7 +37,7 @@ class MovieDetailsFragment : Fragment() {
             this,
             MovieDetailsViewModelFactory
         ).get(MovieDetailsViewModel::class.java)
-        viewModel.movieId.value = arguments?.getInt(MOVIE_ID_KEY)
+        viewModel.movieId.value = arguments?.getString(MOVIE_ID_KEY)
         val binding = MovieDetailsFragmentBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner

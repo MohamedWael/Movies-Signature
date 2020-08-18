@@ -18,8 +18,7 @@ fun hideKeyboard(activity: Activity) {
     imm.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
-fun MoviesItem.toUIModel(index: Int) = MovieUIModel(
-    index,
+fun MoviesItem.toUIModel() = MovieUIModel(
     title?.trim(),
     rating?.toString() + " . " +
             genres

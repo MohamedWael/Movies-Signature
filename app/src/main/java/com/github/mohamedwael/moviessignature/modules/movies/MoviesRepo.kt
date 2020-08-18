@@ -18,9 +18,9 @@ class MoviesRepo(private val parser: RawJsonFileParser<MoviesResponse>) {
         return movies
     }
 
-    fun getMovieById(id: Int): LiveData<MoviesItem> {
+    fun getMovieById(id: String): LiveData<MoviesItem> {
         val movie = MutableLiveData<MoviesItem>()
-        movie.value = loadMoviesList()?.getOrNull(id)
+        movie.value = loadMoviesList()?.find { it.title == id }
         return movie
     }
 }

@@ -63,9 +63,9 @@ class MoviesViewModel(moviesRepo: MoviesRepo) : ViewModel() {
 
     fun createMovieUIModel(movieList: List<MoviesItem>): List<MovieUIModel> {
         val years = mutableSetOf<MovieUIModel>()
-        return movieList.mapIndexed { index, movieItem ->
-            years.add(MovieUIModel(null, null, null, movieItem.year))
-            movieItem.toUIModel(index)
+        return movieList.map { movieItem ->
+            years.add(MovieUIModel(null, null, movieItem.year))
+            movieItem.toUIModel()
         }.toMutableList().also {
             it.addAll(0, years)
         }.apply {

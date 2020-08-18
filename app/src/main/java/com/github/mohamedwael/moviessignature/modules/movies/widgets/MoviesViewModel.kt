@@ -14,10 +14,10 @@ class MoviesViewModel {
 
     fun onMovieClick(view: View) {
         try {
-            movieUIModel.get()?.id?.also { id ->
+            movieUIModel.get()?.title?.also { title ->
                 Navigation.findNavController(view)
                     .navigate(R.id.action_moviesFragment_to_movieDetailsFragment, Bundle().apply {
-                        putInt(MOVIE_ID_KEY, id)
+                        putString(MOVIE_ID_KEY, title)
                     })
             }
         } catch (e: IllegalArgumentException) {
